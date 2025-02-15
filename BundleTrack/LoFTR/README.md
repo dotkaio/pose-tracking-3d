@@ -1,12 +1,3 @@
-# LoFTR: Detector-Free Local Feature Matching with Transformers
-### [Project Page](https://zju3dv.github.io/loftr) | [Paper](https://arxiv.org/pdf/2104.00680.pdf)
-<br/>
-
-> LoFTR: Detector-Free Local Feature Matching with Transformers  
-> [Jiaming Sun](https://jiamingsun.ml)<sup>\*</sup>, [Zehong Shen](https://zehongs.github.io/)<sup>\*</sup>, [Yu'ang Wang](https://github.com/angshine)<sup>\*</sup>, [Hujun Bao](http://www.cad.zju.edu.cn/home/bao/), [Xiaowei Zhou](http://www.cad.zju.edu.cn/home/xzhou/)  
-> CVPR 2021
-
-![demo_vid](assets/loftr-github-demo.gif)
 
 ## TODO List and ETA
 - [x] Inference code and pretrained models (DS and OT) (2021-4-7)
