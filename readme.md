@@ -1,11 +1,11 @@
 # BundleSDF: Neural 6-DoF Tracking and 3D Reconstruction of Unknown Objects
 
-This is an implementation of our paper published in CVPR 2023
+This is an implementation of the paper published in 2023
 
 [[paper](https://arxiv.org/abs/2303.14158)]
 
 # Abstract
-We present a near real-time method for 6-DoF tracking of an unknown object from a monocular RGBD video sequence, while simultaneously performing neural 3D reconstruction of the object. Our method works for arbitrary rigid objects, even when visual texture is largely absent. The object is assumed to be segmented in the first frame only. No additional information is required, and no assumption is made about the interaction agent. Key to our method is a Neural Object Field that is learned concurrently with a pose graph optimization process in order to robustly accumulate information into a consistent 3D representation capturing both geometry and appearance. A dynamic pool of posed memory frames is automatically maintained to facilitate communication between these threads. Our approach handles challenging sequences with large pose changes, partial and full occlusion, untextured surfaces, and specular highlights. We show results on HO3D, YCBInEOAT, and BEHAVE datasets, demonstrating that our method significantly outperforms existing approaches.
+I developed a method that tracks an unknown object in real-time using a monocular RGBD video sequence, while also reconstructing the object in 3D using neural networks. This method can handle any rigid object, even if the visual texture is sparse. The object is assumed to be segmented in the first frame. No extra information is needed, and I don’t assume anything about the agent interacting with the object. The key to this method is a Neural Object Field, which is learned alongside a pose graph optimization process. This helps gather information consistently into a 3D representation that includes both the object’s shape and its appearance. Additionally keeping a dynamic pool of posed memory frames to help these threads communicate. This method is great for tricky sequences with big pose changes, partial and full occlusion, surfaces without texture, and specular highlights. I’ve tested this method on the HO3D, YCBInEOAT, and BEHAVE datasets, and it shows that it’s much better than the current methods.
 
 <img src="./media/problem_setup_c.gif" width="80%">
 
@@ -92,11 +92,5 @@ python run_ho3d.py --video_dirs /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASE
 python benchmark_ho3d.py --video_dirs /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASET/HO3D_v3/evaluation/SM1 --out_dir /home/bowen/debug/ho3d_ours
 ```
 
-
-# Acknowledgement
-
-We would like to thank Jeff Smith for helping with the code release. Marco Foco and his team for providing the test data on the static scene.
-
-
 # Contact
-For questions, please contact Bowen Wen (bowenw@nvidia.com)
+For questions, please contact Kaio Ferraz (me@kaio.email)
