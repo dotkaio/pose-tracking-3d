@@ -39,20 +39,55 @@ year          = {2023},
   ```
 
 
-# Docker/Environment setup
-- Build the docker image (this only needs to do once and can take some time).
-```
-cd docker
-docker build --network host -t nvcr.io/nvidian/bundlesdf .
-```
+# Setup (recommended: Docker)
+If you are setting this project up for the first time, use Docker first (it avoids most local compiler/CUDA issues).
 
-- Start a docker container the first time
-```
-cd docker && bash run_container.sh
+## Option A: Docker (recommended)
+1. Build the image (one-time, takes a while):
+   ```bash
+   cd /path/to/pose-tracking-3d/docker
+   docker build --network host -t nvcr.io/nvidian/bundlesdf .
+   ```
 
-# Inside docker container, compile the packages which are machine dependent
-bash build.sh
-```
+2. Start the container:
+   ```bash
+   cd /path/to/pose-tracking-3d/docker
+   bash run_container.sh
+   ```
+
+3. Inside the container, build machine-specific extensions:
+   ```bash
+   cd /path/to/pose-tracking-3d
+   bash build.sh
+   ```
+
+## Option B: Conda (local machine)
+Use this only if you prefer local setup and already have NVIDIA drivers + CUDA toolkit (with `nvcc`) available on your machine.
+
+1. Create and activate the conda environment:
+   ```bash
+   cd /path/to/pose-tracking-3d
+   conda env create -f environment.yml
+   conda activate bundlesdf
+   ```
+
+2. Clone Kaolin (required by `build.sh`):
+   ```bash
+   cd /path/to/pose-tracking-3d
+   git clone --recursive https://github.com/NVIDIAGameWorks/kaolin
+   ```
+
+3. Build project extensions:
+   ```bash
+   cd /path/to/pose-tracking-3d
+   KAOLIN_DIR=$(pwd)/kaolin bash build.sh
+   ```
+
+### Common setup errors
+- `cmake ... CMAKE_CXX_COMPILER not set`:
+  install a full compiler toolchain (`build-essential`) and `cmake`, then retry.
+- `Failed to find nvcc` or `ModuleNotFoundError: No module named 'torch'`:
+  activate the conda env first, and verify CUDA toolkit + PyTorch are installed in that env.
 
 # Run on your custom data
 - Prepare your RGBD video folder as below (also refer to the example milk data). You can find an [example milk data here](https://drive.google.com/file/d/1akutk_Vay5zJRMr3hVzZ7s69GT4gxuWN/view?usp=share_link) for testing.
